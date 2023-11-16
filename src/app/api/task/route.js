@@ -1,4 +1,5 @@
 import { connectDB } from "@/helper/db";
+import { getResponse } from "@/helper/response";
 import Task from "@/models/task";
 import { NextResponse } from "next/server";
 
@@ -12,7 +13,7 @@ export const GET=async()=>{
         }
         return NextResponse.json({success:"true",messgae:tasks});
     }catch(error){
-        return NextResponse.json({success:"false",message:error.message});
+        return getResponse(false,error.message,500);
     }
 }
 

@@ -1,4 +1,6 @@
+import { getResponse } from "@/helper/response";
 import Task from "@/models/task";
+import { get } from "mongoose";
 import { NextResponse } from "next/server";
 
 export const GET=async(request,{params})=>{
@@ -25,10 +27,12 @@ export async function DELETE(request,{params}) {
 
 export async function PUT(request,{params}) {
     const taskId=params.task;
-    
+    const {title,content,status}=await request.json();   
     try {
-        
+        const result=await Task.findByIdAndUpdate({_id:taskId},{title,content,status});
+        if(!result) return NextResponse.json({success:false});
+        return getResponse(true,result,200);
     } catch (error) {
-        
+        return NextResponse.json(error.message);
     }
 }
