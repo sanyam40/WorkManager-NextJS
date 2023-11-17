@@ -33,5 +33,20 @@ export async function POST(request){
         console.log(error.message);
         return NextResponse.json({success:"false",message:error.message});
     }
-
 }
+
+// export async function DELETE(request) {
+//     try {
+      
+//       const task = await Task.deleteMany({ status: "pending" });
+//         if (task) {
+//             return NextResponse.json({ success: "true", message: "Task deleted successfully" });
+//         }
+//        else {
+//         return NextResponse.json({ success: "false", message: "Task not found or status is not pending" });
+//       }
+//     } catch (error) {
+//       console.log(error.message);
+//       return NextResponse.json({ success: "false", message: error.message });
+//     }
+//   }
